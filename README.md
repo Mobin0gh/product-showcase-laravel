@@ -112,11 +112,35 @@ php artisan serve
 
 ---
 
-## Screenshots
+## 📸 Screenshots
 
-Screenshots will be added soon.
+### Home Page
+
+![Home Page](screenshots/home.png)
 
 ---
+
+### Product Details
+
+![Product Details](screenshots/detail.png)
+
+---
+
+### Admin Panel
+
+![Admin Panel](screenshots/adminpanel.png)
+
+---
+
+### Create Product
+
+![Create Product](screenshots/create.png)
+
+---
+
+### Edit Product
+
+![Edit Product](screenshots/edit.png)
 
 ## Future Improvements
 
