@@ -63,7 +63,9 @@
                 >
                 <h3>{{$product['title']}}</h3>
                 <p>{{ $product['description'] }}</p>
-                <a href="product.html" class="btn">مشاهده محصول</a>
+                <a href="{{ route('products.show', $product) }}" class="btn">
+                    مشاهده محصول
+                </a>
             </div>
         @endforeach
             <div class="pagination">

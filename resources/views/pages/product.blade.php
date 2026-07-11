@@ -16,7 +16,7 @@
         <div class="product-info">
 
         <span class="category">
-            {{ $product->category->name }}
+            {{ $product->category?->name ?? 'بدون دسته‌بندی' }}
         </span>
 
             <h1>{{ $product->title }}</h1>
