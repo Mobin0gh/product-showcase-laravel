@@ -55,7 +55,7 @@
 
     </form>
     <section class="products">
-        @foreach($products as $product)
+        @forelse($products as $product)
             <div class="card">
                 <img
                     src="{{ $product->image_url }}"
@@ -67,10 +67,12 @@
                     مشاهده محصول
                 </a>
             </div>
-        @endforeach
-            <div class="pagination">
-                {{ $products->links() }}
-            </div>
+        @empty
+            <p class="no-results">محصولی با این مشخصات پیدا نشد.</p>
+        @endforelse
+        <div class="pagination">
+            {{ $products->links() }}
+        </div>
     </section>
 @endsection
 

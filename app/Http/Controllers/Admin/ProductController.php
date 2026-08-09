@@ -8,13 +8,18 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Http\Requests\Admin\StoreProductRequest;
 use App\Http\Requests\Admin\UpdateProductRequest;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+
 class ProductController extends Controller
 {
+    use AuthorizesRequests;
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
+        $this->authorize('viewAny', Product::class);
+
         $products = Product::with('category')->latest()->paginate(10);
 
         return view('admin.products.index', compact('products'));
@@ -25,6 +30,8 @@ class ProductController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Product::class);
+
         $categories = Category::all();
 
         return view('admin.products.create', compact('categories'));
@@ -35,6 +42,8 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
+        $this->authorize('create', Product::class);
+
         $validated = $request->validated();
 
         if ($request->hasFile('image')) {
@@ -70,6 +79,8 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
+        $this->authorize('update', $product);
+
         $categories = Category::all();
 
         return view('admin.products.edit', compact('product', 'categories'));
@@ -80,6 +91,8 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
+        $this->authorize('update', $product);
+
         $validated = $request->validated();
 
         if ($request->hasFile('image')) {
@@ -112,6 +125,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
+        $this->authorize('delete', $product);
         // اگر محصول تصویر داشت، آن را حذف کن
         if ($product->image) {
             Storage::disk('public')->delete($product->image);
