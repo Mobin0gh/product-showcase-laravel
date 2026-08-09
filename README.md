@@ -1,177 +1,147 @@
-# Product Showcase Laravel
+# 🛍️ Product Showcase — Laravel
 
-A modern **Product Showcase** web application built with **Laravel 13**. This project demonstrates clean Laravel architecture, product management, category relationships, image uploads, search functionality, and an admin dashboard.
+A full-featured product showcase & admin management platform built with **Laravel 13** and **Tailwind CSS 4**. Includes role-based authentication, a complete admin panel, image uploads, search & filtering, and policy-based authorization.
 
-> **Note:** This project is designed as a product presentation website, **not** an e-commerce store. Visitors can browse products and view their details, but purchasing functionality is intentionally excluded.
-
----
-
-## Features
-
-* Product Management (CRUD)
-* Category Management
-* Product Image Upload
-* Product Image Update
-* Automatic Image Deletion
-* Product Search
-* Category Filter
-* Product Detail Page
-* Responsive Product Cards
-* Admin Dashboard
-* Pagination
-* Laravel Validation
-* Eloquent Relationships
-* Clean MVC Architecture
+🔗 **Repository:** [github.com/Mobin0gh/product-showcase-laravel](https://github.com/Mobin0gh/product-showcase-laravel)
 
 ---
 
-## Built With
+## ✨ Features
 
-* Laravel 13
-* PHP 8.4
-* MySQL
-* Blade Template Engine
-* HTML5
-* CSS3
-* Vite
+### Public side
+- Browse products with pagination
+- Live search by product title
+- Filter products by category
+- Sort by name (A–Z / Z–A) or date (newest / oldest)
+- Product detail page
 
----
+### Authentication
+- Registration, login, password reset (via Laravel Fortify)
+- User profile management (update info, change password, delete account)
 
-## Database Structure
-
-### Products
-
-* Title
-* Description
-* Image
-* Category
-
-### Categories
-
-* Name
-
-Relationship:
-
-* One Category → Many Products
-* One Product → One Category
+### Admin panel
+- Role-based access control (Admin vs. regular User)
+- Dashboard with live stats (total products, total categories, latest products)
+- Full CRUD for **Products** (with image upload, replace, and cleanup)
+- Full CRUD for **Categories** (with delete protection when products are linked)
+- Server-side validation with custom Persian error messages
+- Authorization enforced at two layers: **Middleware** (route-level) and **Policy** (action-level)
 
 ---
 
-## Installation
+## 🧰 Tech Stack
 
-Clone the repository
+| Layer          | Technology                     |
+|----------------|---------------------------------|
+| Backend        | Laravel 13, PHP 8.4             |
+| Auth           | Laravel Fortify                 |
+| Database       | MySQL                           |
+| Frontend       | Blade, Tailwind CSS 4           |
+| Build tool     | Vite                            |
+| Version control| Git & GitHub                    |
+
+---
+
+## 🏗️ Architecture Highlights
+
+- **Route Model Binding** for clean, automatic 404 handling
+- **Form Request classes** to separate validation logic from controllers
+- **Eloquent relationships** (`Category hasMany Product`) with eager loading to avoid N+1 queries
+- **Policy-based authorization** (`ProductPolicy`) layered on top of role middleware
+- **Idempotent database seeders** using `updateOrCreate` (safe to re-run without duplicating data)
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+- PHP >= 8.4
+- Composer
+- MySQL
+- Node.js & npm
+
+### Installation
 
 ```bash
+# 1. Clone the repository
 git clone https://github.com/Mobin0gh/product-showcase-laravel.git
-```
-
-Go to the project
-
-```bash
 cd product-showcase-laravel
-```
 
-Install dependencies
-
-```bash
+# 2. Install PHP dependencies
 composer install
-```
 
-Copy environment file
-
-```bash
-cp .env.example .env
-```
-
-Generate application key
-
-```bash
-php artisan key:generate
-```
-
-Configure your database inside `.env`
-
-Run migrations and seeders
-
-```bash
-php artisan migrate --seed
-```
-
-Install frontend dependencies
-
-```bash
+# 3. Install JS dependencies
 npm install
+
+# 4. Set up environment
+cp .env.example .env
+php artisan key:generate
+
+# 5. Configure your database in .env, then run migrations + seeders
+php artisan migrate --seed
+
+# 6. Link storage (for uploaded product images)
+php artisan storage:link
+
+# 7. Run the app
+php artisan serve
 npm run dev
 ```
 
-Run the application
+The app will be available at `http://127.0.0.1:8000`.
 
-```bash
-php artisan serve
+### Default seeded accounts
+
+| Role  | Email               | Password   |
+|-------|----------------------|-----------|
+| Admin | admin@example.com    | 12345678  |
+
+---
+
+## 📁 Project Structure (key folders)
+
+```
+app/
+├── Http/
+│   ├── Controllers/
+│   │   ├── Admin/          # Admin-only controllers (Product, Category, Dashboard)
+│   │   └── ProfileController.php
+│   ├── Middleware/
+│   │   └── AdminMiddleware.php
+│   └── Requests/
+│       └── Admin/          # Form Request validation classes
+├── Models/
+│   ├── Product.php
+│   ├── Category.php
+│   └── User.php
+├── Policies/
+│   └── ProductPolicy.php
+resources/
+├── views/
+│   ├── admin/               # Admin panel views
+│   ├── pages/                # Public-facing pages
+│   └── partials/              # Shared header/footer
+database/
+├── migrations/
+└── seeders/
 ```
 
 ---
 
-## 📸 Screenshots
+## 🗺️ Roadmap (completed)
 
-### Home Page
-
-![Home Page](screenshots/home.png)
-
----
-
-### Product Details
-
-![Product Details](screenshots/detail.png)
-
----
-
-### Admin Panel
-
-![Admin Panel](screenshots/adminpanel.png)
+- [x] Authentication (Fortify) & user profile
+- [x] Role-based Admin middleware
+- [x] Admin dashboard with stats
+- [x] Product CRUD with image upload
+- [x] Category CRUD with relational delete protection
+- [x] Form Request validation
+- [x] Pagination
+- [x] Search & filter
+- [x] Policy-based authorization
 
 ---
 
-### Create Product
+## 📄 License
 
-![Create Product](screenshots/create.png)
-
----
-
-### Edit Product
-
-![Edit Product](screenshots/edit.png)
-
-## Future Improvements
-
-* Authentication
-* User Roles
-* Advanced Filtering
-* Product Gallery
-* REST API
-* Admin Dashboard Statistics
-* Dark Mode
-
----
-
-## Project Purpose
-
-This project was developed to strengthen Laravel backend development skills and demonstrate practical knowledge of:
-
-* MVC Architecture
-* Eloquent ORM
-* Database Relationships
-* CRUD Operations
-* File Uploads
-* Validation
-* Routing
-* Blade Templates
-* Laravel Best Practices
-
----
-
-## Author
-
-**Mobin Gholamipour**
-
-GitHub: https://github.com/Mobin0gh
+This project is open-sourced for portfolio and learning purposes.
