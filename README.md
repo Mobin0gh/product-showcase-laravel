@@ -5,6 +5,33 @@ A full-featured product showcase & admin management platform built with **Larave
 🔗 **Repository:** [github.com/Mobin0gh/product-showcase-laravel](https://github.com/Mobin0gh/product-showcase-laravel)
 
 ---
+## 📸 Screenshots
+
+### Public Product Showcase
+
+<p align="center">
+  <img src="screenshots/home.png" alt="Home Page" width="800">
+</p>
+
+<p align="center">
+  <img src="screenshots/detail.png" alt="Product Detail Page" width="800">
+</p>
+
+### Admin Panel
+
+<p align="center">
+  <img src="screenshots/adminpanel.png" alt="Admin Dashboard" width="800">
+</p>
+
+<p align="center">
+  <img src="screenshots/create.png" alt="Create Product" width="800">
+</p>
+
+<p align="center">
+  <img src="screenshots/edit.png" alt="Edit Product" width="800">
+</p>
+
+---
 
 ## ✨ Features
 
